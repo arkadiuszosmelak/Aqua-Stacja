@@ -1,0 +1,74 @@
+.navbar {
+    background-color: rgb(61, 61, 61);
+    color: lightgray;
+    font-weight: 800;
+    font-size: 1.6em;
+}
+
+.navbar-text {
+    width: 100%;
+    color: lightgray;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(31, 31, 31);
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    color: lightgray;
+    font-size: 1.2em;
+    /* cursor: url(foo.cur), url(http://www.rw-designer.com/cursor-view/108334.gif), auto; */
+    /* beka kursor to firefox */
+}
+
+.container {
+    margin-top: 2em;
+    width: 70%;
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+.col {
+    background-color: rgb(61, 61, 61);
+    border-radius: 15px;
+}
+
+#staty {
+    text-align: center;
+    padding: 1em 0 1em 0;
+}
+
+.col-srodek {
+    margin: 0 1em 0 1em;
+}
+
+.col-button {
+    border-radius: 15px 15px 0 0;
+}
+
+.col.col-button {
+    text-align: center;
+}
+
+button {
+    margin: 0 1.5em 0 1.5em;
+    width: 9.688em;
+}
+
+.col-wykres {
+    border-radius: 0 0 15px 15px;
+    padding-bottom: 2em;
+}
+
+#przyciski {
+    margin-bottom: 0;
+}
+
+/* .btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active, .open .dropdown-toggle.btn-light {
+    background-color: blue;
+    color: white;
+} */
