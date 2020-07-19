@@ -6,6 +6,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "99f77819-49ae-4c91-9684-a2ca0acb55c5",
+    });
+  });
+</script> -->
   <!-- Bootstrap CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -45,8 +54,6 @@
         <button type="button" id="p30min" class="btn btn-light">Ostatnie 2h</button>
         <button type="button" id="p2h" class="btn btn-light">Ostatnie 12 h</button>
         <button type="button" id="p12h" class="btn btn-light">Ostatni dzien</button>
-        <button type="button" id="pdzien" class="btn btn-light">Ostatnie 3dni</button>
-        <button type="button" id="p3dni" class="btn btn-light">Ostatnie 30 dni</button>
         <br><br>
       </div>
     </div>
@@ -78,7 +85,7 @@
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: data = {
-        labels: [{% for item in labels %}
+        labels: [{% for item in labels1 %}
       "{{item}}",
           {% endfor %}],
 
@@ -104,7 +111,7 @@
         pointHoverBorderWidth: 3,
         pointRadius: 5,
         pointHitRadius: 10,
-        data: {{ values }},
+        data: {{ odleglosci1 }},
       spanGaps: false
           },
       {
@@ -127,7 +134,7 @@
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: {{ tmp }},
+        data: {{ tmp1 }},
           }]
       },
     options: {
@@ -164,7 +171,7 @@
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: data = {
-      labels: [{% for item in labels %}
+      labels: [{% for item in labels2 %}
     "{{item}}",
         {% endfor %}],
 
@@ -190,7 +197,7 @@
       pointHoverBorderWidth: 3,
       pointRadius: 5,
       pointHitRadius: 10,
-      data: {{ values }},
+      data: {{ odleglosci2 }},
     spanGaps: false
         },
     {
@@ -213,7 +220,7 @@
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: {{ tmp }},
+      data: {{ tmp2 }},
         }]
     },
   options: {
@@ -250,7 +257,7 @@
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: data = {
-      labels: [{% for item in labels %}
+      labels: [{% for item in labels3 %}
     "{{item}}",
         {% endfor %}],
 
@@ -276,7 +283,7 @@
       pointHoverBorderWidth: 3,
       pointRadius: 5,
       pointHitRadius: 10,
-      data: {{ values }},
+      data: {{ odleglosci3 }},
     spanGaps: false
         },
     {
@@ -299,7 +306,7 @@
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: {{ tmp }},
+      data: {{ tmp3 }},
         }]
     },
   options: {
@@ -328,180 +335,6 @@
   }
   });
 </script>
-
-<script>
-
-  var ctx = document.getElementById("wykres3").getContext('2d');
-
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: data = {
-      labels: [{% for item in labels %}
-    "{{item}}",
-        {% endfor %}],
-
-  datasets: [
-    {
-      type: 'line',
-      label: "Temperatura [°C] ",
-      fill: false,
-      yAxisID: 'y-axis-a',
-      lineTension: 0.1,
-      backgroundColor: 'rgb(255, 0, 30)',
-      borderColor: 'rgb(255, 0, 30)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgb(255, 0, 30)',
-      pointBackgroundColor: 'rgb(255, 0, 30)',
-      pointBorderWidth: 1,
-      pointHoverRadius: 4,
-      pointHoverBackgroundColor: 'rgb(255, 0, 30)',
-      pointHoverBorderColor: 'rgb(255, 0, 30)',
-      pointHoverBorderWidth: 3,
-      pointRadius: 5,
-      pointHitRadius: 10,
-      data: {{ values }},
-    spanGaps: false
-        },
-    {
-      type: 'line',
-      label: "{{ legend }}",
-      fill: true,
-      lineTension: 0.1,
-      backgroundColor: "rgba(75,192,192,0.4)",
-      borderColor: "rgba(75,192,192,1)",
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "#fff",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: "rgba(75,192,192,1)",
-      pointHoverBorderColor: "rgba(220,220,220,1)",
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: {{ tmp }},
-        }]
-    },
-  options: {
-    title: {
-      display: true,
-        text: 'Temperatura i poziom wody w akwarium',
-          fontSize: '20',
-            fontColor: 'white',
-              fontFamily: 'Montserrat, sans-serif',
-          // fontColor
-          // fontStyle
-          // padding
-          // lineHeight
-        },
-    scales: {
-      xAxes: [{
-        ticks: {
-          min: 0
-        }
-      }],
-        yAxes: [{
-          position: "left",
-          id: "y-axis-a",
-        }]
-    }
-  }
-  });
-</script>
-
-
-<script>
-
-  var ctx = document.getElementById("wykres4").getContext('2d');
-
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: data = {
-      labels: [{% for item in labels %}
-    "{{item}}",
-        {% endfor %}],
-
-  datasets: [
-    {
-      type: 'line',
-      label: "Temperatura [°C] ",
-      fill: false,
-      yAxisID: 'y-axis-a',
-      lineTension: 0.1,
-      backgroundColor: 'rgb(255, 0, 30)',
-      borderColor: 'rgb(255, 0, 30)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgb(255, 0, 30)',
-      pointBackgroundColor: 'rgb(255, 0, 30)',
-      pointBorderWidth: 1,
-      pointHoverRadius: 4,
-      pointHoverBackgroundColor: 'rgb(255, 0, 30)',
-      pointHoverBorderColor: 'rgb(255, 0, 30)',
-      pointHoverBorderWidth: 3,
-      pointRadius: 5,
-      pointHitRadius: 10,
-      data: {{ values }},
-    spanGaps: false
-        },
-    {
-      type: 'line',
-      label: "{{ legend }}",
-      fill: true,
-      lineTension: 0.1,
-      backgroundColor: "rgba(75,192,192,0.4)",
-      borderColor: "rgba(75,192,192,1)",
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "#fff",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: "rgba(75,192,192,1)",
-      pointHoverBorderColor: "rgba(220,220,220,1)",
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: {{ tmp }},
-        }]
-    },
-  options: {
-    title: {
-      display: true,
-        text: 'Temperatura i poziom wody w akwarium',
-          fontSize: '20',
-            fontColor: 'white',
-              fontFamily: 'Montserrat, sans-serif',
-          // fontColor
-          // fontStyle
-          // padding
-          // lineHeight
-        },
-    scales: {
-      xAxes: [{
-        ticks: {
-          min: 0
-        }
-      }],
-        yAxes: [{
-          position: "left",
-          id: "y-axis-a",
-        }]
-    }
-  }
-  });
-</script>
-
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -521,40 +354,18 @@
     $('#w30min').show();
     $('#w2h').hide();
     $('#w12h').hide();
-    $('#wdzien').hide();
-    $('#w3dni').hide();
   });
   
   $('#p2h').click(function () {
     $('#w30min').hide();
     $('#w2h').show();
     $('#w12h').hide();
-    $('#wdzien').hide();
-    $('#w3dni').hide();
   });
   
   $('#p12h').click(function () {
     $('#w30min').hide();
     $('#w2h').hide();
     $('#w12h').show();
-    $('#wdzien').hide();
-    $('#w3dni').hide();
-  });
-  
-  $('#pdzien').click(function () {
-    $('#w30min').hide();
-    $('#w2h').hide();
-    $('#w12h').hide();
-    $('#wdzien').show();
-    $('#w3dni').hide();
-  });
-  
-  $('#p3dni').click(function () {
-    $('#w30min').hide();
-    $('#w2h').hide();
-    $('#w12h').hide();
-    $('#wdzien').hide();
-    $('#w3dni').show();
   });
   
   });
